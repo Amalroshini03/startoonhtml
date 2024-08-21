@@ -1,0 +1,21 @@
+data_1 = np.loadtxt('Data_1.txt')
+data_2 = np.loadtxt('Data_2.txt')
+def find_peaks_and_plot(data, title="Signal"):
+    from scipy.signal import find_peaks
+    import matplotlib.pyplot as plt
+    peaks, _ = find_peaks(data)
+    minima, _ = find_peaks(-data)
+    plt.figure(figsize=(10, 6))
+    plt.plot(data, label='Signal', color='black')
+    plt.plot(peaks, data[peaks], 'ro', label='Maxima (Peaks)')
+    plt.plot(minima, data[minima], 'bo', label='Minima (Valleys)')
+    plt.title(title)
+    plt.xlabel('Index')
+    plt.ylabel('Amplitude')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+    print(f"Maxima indices: {peaks}")
+    print(f"Minima indices: {minima}")
+find_peaks_and_plot(data_1, title="Signal from Data_1")
+find_peaks_and_plot(data_2, title="Signal from Data_2")
